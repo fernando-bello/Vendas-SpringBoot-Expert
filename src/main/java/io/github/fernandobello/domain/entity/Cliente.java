@@ -1,7 +1,17 @@
 package io.github.fernandobello.domain.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table (name = "cliente") //Não é obrigatorio colocar essa annotation, a menos que o nome da classe seja diferente do nome da tabela
 public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id") //Não é obrigatorio colocar essa annotation, a menos que o nome da propriedade seja diferente do nome da propriedade na tabela
     private Integer id;
+
+    @Column(name = "nome", length = 100)
     private String nome;
 
     public Integer getId() {
