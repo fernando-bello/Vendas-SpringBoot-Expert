@@ -1,4 +1,4 @@
-package io.github.fernandobello.domain.repositorio;
+package io.github.fernandobello.domain.repository;
 
 import io.github.fernandobello.domain.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;

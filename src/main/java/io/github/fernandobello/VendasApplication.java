@@ -1,15 +1,13 @@
 package io.github.fernandobello;
 
 import io.github.fernandobello.domain.entity.Cliente;
-import io.github.fernandobello.domain.repositorio.Clientes;
+import io.github.fernandobello.domain.repository.Clientes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @SpringBootApplication //O Spring reconhece que essa classe vai inicializar uma aplicação Spring Boot
 @RestController //Essa classe será o controlador rest (posso controlar e mandar mensagens ao Browser)
