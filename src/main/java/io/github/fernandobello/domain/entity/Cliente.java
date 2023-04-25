@@ -1,6 +1,7 @@
 package io.github.fernandobello.domain.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table (name = "cliente") //Não é obrigatorio colocar essa annotation, a menos que o nome da classe seja diferente do nome da tabela
@@ -13,6 +14,21 @@ public class Cliente {
 
     @Column(name = "nome", length = 100)
     private String nome;
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Pedido> pedidos;
+
+    public Cliente() {
+    }
+
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+
+    public Cliente(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 
     public Integer getId() {
         return id;
@@ -30,16 +46,12 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Cliente() {
+    public Set<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public Cliente(String nome) {
-        this.nome = nome;
-    }
-
-    public Cliente(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override

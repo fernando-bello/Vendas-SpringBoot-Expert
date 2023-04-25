@@ -3,12 +3,10 @@ package io.github.fernandobello;
 import io.github.fernandobello.domain.entity.Cliente;
 import io.github.fernandobello.domain.repositorio.Clientes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,30 +24,9 @@ public class VendasApplication {
             clientes.save(cliente);
             clientes.save(new Cliente("Outro Cliente"));
 
-            List<Cliente> todosClientes = clientes.findAll();
-            todosClientes.forEach(System.out::println);
+            boolean existe = clientes.existsByNome(("Douglas"));
+            System.out.println("Existe um cliente chamado Douglas? Resposta: " + existe);
 
-            System.out.println("Atualizando clientes");
-            todosClientes.forEach(c -> {
-                c.setNome((c.getNome() + " atualizado "));
-                clientes.save(c);
-            });
-            todosClientes = clientes.findAll();
-            todosClientes.forEach(System.out::println);
-
-            System.out.println("Buscando clientes");
-            clientes.findByNomeLike("Cli").forEach(System.out::println);
-
-            System.out.println("Deletando clientes");
-            clientes.findAll().forEach(c -> {
-                clientes.delete(c);
-            });
-            todosClientes = clientes.findAll();
-            if(todosClientes.isEmpty()) {
-                System.out.println(("Nenhum cliente encontrado"));
-            } else {
-                todosClientes.forEach(System.out::println);
-            }
 
         };
     }
