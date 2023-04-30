@@ -1,30 +1,38 @@
 package io.github.fernandobello.domain.rest.controller;
 
 
+import io.github.fernandobello.domain.entity.Cliente;
+import io.github.fernandobello.domain.repository.ClientesRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Optional;
 
 @Controller
-@RequestMapping("/api/clientes")
 public class ClienteController {
 
-    @RequestMapping(
-            value = {"/hello/{nome}", "/teste"}, //caminho url (podem ser varios)
-            method = RequestMethod.GET, //método
-            consumes = {"application/json", "application/xml"}, //recebido em json ou xml
-            produces = {"application/json", "application/xml"} //produz json ou xml
-    )
+    private ClientesRepository clientes;
 
-
-            @ResponseBody
-    public String helloCliente( @PathVariable("nome") String nomeCliente) {
-        return String.format("Hello %s ", nomeCliente);
+    public ClienteController(ClientesRepository clientes) {
+        this.clientes = clientes;
     }
 
+    @GetMapping("/api/clientes/{id}")
+    @ResponseBody
+    public ResponseEntity getClienteById(@PathVariable("id") Integer id) {
+        Optional<Cliente> cliente = clientes.findById(id);
+
+        if (cliente.isPresent()) {
+            //ResponseEntity<Cliente> = new ResponseEntity<>(cliente.get(), HttpStatus.OK); -> função que acontece no ok(cliente.get()) abaixo
+            return ResponseEntity.ok(cliente.get());
+        }
+        return ResponseEntity.notFound().build();
 
 
-
-
-
-
+    }
 }
+
