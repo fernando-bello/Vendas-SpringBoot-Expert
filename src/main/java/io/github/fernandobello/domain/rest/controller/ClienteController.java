@@ -18,7 +18,7 @@ public class ClienteController {
         this.clientes = clientes;
     }
 
-    @GetMapping("/api/clientes/{id}")
+    @RequestMapping("/api/clientes/{id}")
     @ResponseBody
     public ResponseEntity getClienteById(@PathVariable("id") Integer id) {
         Optional<Cliente> cliente = clientes.findById(id);
@@ -30,14 +30,14 @@ public class ClienteController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/api/clientes")
+    @PostMapping("/api/clientes")//@RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity save(@RequestBody Cliente cliente) {
         Cliente clienteSalvo = clientes.save(cliente);
         return ResponseEntity.ok(clienteSalvo);
     }
 
-    @DeleteMapping("api/clientes/{id}")
+    @DeleteMapping("api/clientes/{id}") //@RequestMapping(method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseEntity delete(@PathVariable Integer id) {
         Optional<Cliente> cliente = clientes.findById(id);
@@ -47,6 +47,18 @@ public class ClienteController {
             return ResponseEntity.noContent().build(); //noContent() é um codigo de status de sucesso, que não retorna NADA
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("api/clientes/{id}") //@RequestMapping(method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity update (@PathVariable Integer id, @RequestBody Cliente cliente) {
+        return clientes
+                .findById(id)
+                .map(clienteExistente -> {
+                    cliente.setId(clienteExistente.getId());
+                    clientes.save(cliente);
+                    return ResponseEntity.noContent().build();
+                }).orElseGet( () -> ResponseEntity.notFound().build());
     }
 }
 
