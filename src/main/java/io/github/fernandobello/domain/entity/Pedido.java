@@ -3,6 +3,7 @@ package io.github.fernandobello.domain.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,7 +25,7 @@ public class Pedido {
     private BigDecimal Total;
 
     @OneToMany(mappedBy = "pedido")
-    private Set<ItemPedido> itens;
+    private List<ItemPedido> itens;
 
     public Integer getId() {
         return id;
@@ -58,11 +59,11 @@ public class Pedido {
         Total = total;
     }
 
-    public Set<ItemPedido> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
     }
 
-    public void setItens(Set<ItemPedido> itens) {
+    public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
 
