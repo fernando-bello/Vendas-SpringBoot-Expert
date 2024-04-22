@@ -14,8 +14,6 @@ import io.github.fernandobello.exception.RegraNegocioException;
 import io.github.fernandobello.rest.dto.ItemPedidoDTO;
 import io.github.fernandobello.rest.dto.PedidoDTO;
 import io.github.fernandobello.service.PedidoService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

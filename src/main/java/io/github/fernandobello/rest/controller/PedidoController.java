@@ -14,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
@@ -31,24 +32,24 @@ public class PedidoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Integer save(@RequestBody PedidoDTO dto) {
+    public Integer save(@RequestBody @Valid PedidoDTO dto) {
         Pedido pedido = service.salvar(dto);
         return pedido.getId();
     }
 
     @GetMapping("{id}")
     public InformacoesPedidoDTO getById(@PathVariable Integer id) {
-        return service.obterPedidoCompleto(id).map(p -> converter(p)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado"));
+        return service.obterPedidoCompleto(id).map(p -> converterPedido(p)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado"));
 
     }
 
     @PatchMapping("{id}")
-    public void updateStatus(@PathVariable Integer id, @RequestBody AtualizacaoPedidoStatusDTO dto) {
+    public void updateStatus(@PathVariable Integer id, @RequestBody @Valid AtualizacaoPedidoStatusDTO dto) {
         String novoStatus = dto.getNovoStatus();
         service.atualizaStatus(id, StatusPedido.valueOf(novoStatus));
     }
 
-    private InformacoesPedidoDTO converter(Pedido pedido) {
+    private InformacoesPedidoDTO converterPedido(Pedido pedido) {
         return InformacoesPedidoDTO
                 .builder()
                 .codigo(pedido.getId())
@@ -56,12 +57,12 @@ public class PedidoController {
                 .cpf(pedido.getCliente().getCpf())
                 .nomeCliente(pedido.getCliente().getNome())
                 .total(pedido.getTotal())
-                .itens(converter(pedido.getItens()))
+                .itens(converterItensPedido(pedido.getItens()))
                 .status(pedido.getStatus().name())
                 .build();
     }
 
-    private List<InformacaoItemPedidoDTO> converter(List<ItemPedido> itens) {
+    private List<InformacaoItemPedidoDTO> converterItensPedido(List<ItemPedido> itens) {
         if (CollectionUtils.isEmpty(itens)) {
             return Collections.emptyList();
         }
