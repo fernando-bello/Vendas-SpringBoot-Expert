@@ -2,6 +2,9 @@ package io.github.fernandobello.rest.controller;
 
 import io.github.fernandobello.domain.entity.ItemPedido;
 import io.github.fernandobello.domain.entity.Pedido;
+import io.github.fernandobello.domain.enums.StatusPedido;
+import io.github.fernandobello.domain.repository.PedidosRepository;
+import io.github.fernandobello.rest.dto.AtualizacaoPedidoStatusDTO;
 import io.github.fernandobello.rest.dto.InformacaoItemPedidoDTO;
 import io.github.fernandobello.rest.dto.InformacoesPedidoDTO;
 import io.github.fernandobello.rest.dto.PedidoDTO;
@@ -39,6 +42,12 @@ public class PedidoController {
 
     }
 
+    @PatchMapping("{id}")
+    public void updateStatus(@PathVariable Integer id, @RequestBody AtualizacaoPedidoStatusDTO dto) {
+        String novoStatus = dto.getNovoStatus();
+        service.atualizaStatus(id, StatusPedido.valueOf(novoStatus));
+    }
+
     private InformacoesPedidoDTO converter(Pedido pedido) {
         return InformacoesPedidoDTO
                 .builder()
@@ -48,6 +57,7 @@ public class PedidoController {
                 .nomeCliente(pedido.getCliente().getNome())
                 .total(pedido.getTotal())
                 .itens(converter(pedido.getItens()))
+                .status(pedido.getStatus().name())
                 .build();
     }
 

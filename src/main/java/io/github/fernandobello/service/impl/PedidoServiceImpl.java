@@ -4,10 +4,12 @@ import io.github.fernandobello.domain.entity.Cliente;
 import io.github.fernandobello.domain.entity.ItemPedido;
 import io.github.fernandobello.domain.entity.Pedido;
 import io.github.fernandobello.domain.entity.Produto;
+import io.github.fernandobello.domain.enums.StatusPedido;
 import io.github.fernandobello.domain.repository.ClientesRepository;
 import io.github.fernandobello.domain.repository.ItensPedidoRepository;
 import io.github.fernandobello.domain.repository.PedidosRepository;
 import io.github.fernandobello.domain.repository.ProdutosRepository;
+import io.github.fernandobello.exception.PedidoNaoEncontradoException;
 import io.github.fernandobello.exception.RegraNegocioException;
 import io.github.fernandobello.rest.dto.ItemPedidoDTO;
 import io.github.fernandobello.rest.dto.PedidoDTO;
@@ -49,6 +51,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setTotal(dto.getTotal());
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         List<ItemPedido> itensPedido = converterItens(pedido, dto.getItens());
         pedidosRepository.save(pedido);
@@ -61,6 +64,15 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return pedidosRepository.findByIdFetchItens(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+        pedidosRepository.findById(id).map(pedido -> {
+            pedido.setStatus(statusPedido);
+            return pedidosRepository.save(pedido);
+        }).orElseThrow(() -> new PedidoNaoEncontradoException());
     }
 
     private List<ItemPedido> converterItens(Pedido pedido, List<ItemPedidoDTO> itens) {

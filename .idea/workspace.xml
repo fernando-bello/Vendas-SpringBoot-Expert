@@ -6,15 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="30a90623-4a78-4464-82c4-b3566c3d2541" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/VendasApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/VendasApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/domain/entity/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/domain/entity/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/domain/repository/PedidosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/domain/repository/PedidosRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/exception/RegraNegocioException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/exception/RegraNegocioException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/controller/ItemPedidoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/domain/entity/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/domain/entity/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/controller/ApplicationControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/controller/ApplicationControllerAdvice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/controller/PedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/controller/PedidoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/dto/InformacoesPedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/dto/InformacoesPedidoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/service/PedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/service/PedidoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/service/impl/PedidoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/fernandobello/service/impl/PedidoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/meu_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/meu_schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +63,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="io.github.fernandobello.domain.entity" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="VendasApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.github.fernandobello.VendasApplication" />
@@ -114,12 +117,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/io/github/fernandobello/service/impl/PedidoServiceImpl.java</url>
-          <line>70</line>
+          <line>82</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/io/github/fernandobello/rest/controller/ApplicationControllerAdvice.java</url>
-          <line>15</line>
+          <line>16</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
