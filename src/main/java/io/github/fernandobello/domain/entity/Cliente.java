@@ -12,7 +12,7 @@ import java.util.Set;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") //Não é obrigatorio colocar essa annotation, a menos que o nome da propriedade seja diferente do nome da propriedade na tabela
     private Integer id;
 

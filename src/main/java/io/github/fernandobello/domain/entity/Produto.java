@@ -18,13 +18,14 @@ import java.math.BigDecimal;
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     @NotEmpty(message = "Campo Descrição é obrigatório.")
     private String descricao;
 
+    @Column(name = "preco_unitario")
     @NotNull(message = "Campo Preço é obrigatório")
     private BigDecimal preco;
 
